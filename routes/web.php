@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('email_form');
+});
+
+// Route::get('/email_form', function () {
+//     return view('welcome');
+// });
+
+Route::post('send-mail',[MainController::class,'sendMail']);
+Route::post('second-page',[MainController::class,'secondPage']);
+Route::post('third-page',[MainController::class,'thirdPage']);
+Route::post('review-data',[MainController::class,'reviewData']);
+
+
+
+Route::get('/mobile-verification', function () {
+    return view('mobile_verification');
 });
