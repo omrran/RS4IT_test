@@ -77,6 +77,7 @@ class MainController extends Controller
         Session::put('CheckOutDate5Nigh',$request->input('CheckOutDate5Nigh'));
         Session::put('romType',$request->input('romType'));
         return  view('review_page'); 
+        // return  Session::all(); 
     }
 
     
