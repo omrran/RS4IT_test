@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('email_form');
 });
 
+Route::get('/test', function () {
+    return Public_path('photos').'\companions';
+});
 // Route::get('/email_form', function () {
 //     return view('welcome');
 // });

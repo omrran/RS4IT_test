@@ -5,7 +5,7 @@
 <h4 class="mx-auto w-50 p-3 mt-5">Please fill below information per to passport :</h4>
 <div class="mx-auto w-50 p-3 mt-3 bg-body rounded-3 shadow-lg ">
 
-    <form method="POST" action="{{ url('/third-page') }}">
+    <form method="POST" action="{{ url('/third-page') }}" enctype="multipart/form-data">
         @csrf
         {{-- firstName --}}
         <label class="pt-2">first name:</label>
@@ -137,11 +137,11 @@
         <h5 class="pt-3"> upload require documents for VISA requirement :</h5>
         {{-- passportPicture  --}}
         <label for="passportPicture" class="form-label">passport Picture :</label>
-        <input class="form-control form-control-sm" name="passportPicture" id="passportPicture" type="file">
+        <input class="form-control form-control-sm" name="passportPicture" id="passportPicture" type="file" />
         
         {{-- personalPicture  --}}
         <label for="personalPicture" class="form-label">personal Picture :</label>
-        <input class="form-control form-control-sm" name="personalPicture" id="personalPicture" type="file">
+        <input class="form-control form-control-sm" name="personalPicture" id="personalPicture" type="file" />
         
         {{-- with companion ? --}}
         <label for="withCompanion" class="form-label">Are you Traveling with companion ?</label>
@@ -279,11 +279,11 @@
             <h5 class="pt-3"> upload require documents for VISA requirement :</h5>
             {{-- passportPictureCompanion  --}}
             <label for="passportPictureCompanion" class="form-label">passport Picture :</label>
-            <input class="form-control form-control-sm" name="passportPictureCompanion" id="passportPictureCompanion" type="file">
+            <input class="form-control form-control-sm" name="passportPictureCompanion" id="passportPictureCompanion" type="file" />
             
             {{-- personalPictureCompanion  --}}
             <label for="personalPictureCompanion" class="form-label">personal Picture :</label>
-            <input class="form-control form-control-sm" name="personalPictureCompanion" id="personalPictureCompanion" type="file">
+            <input class="form-control form-control-sm" name="personalPictureCompanion" id="personalPictureCompanion" type="file" />
         
         </div>
 

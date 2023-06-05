@@ -50,8 +50,24 @@ class MainController extends Controller
         Session::put('organization',$request->input('organization'));
         Session::put('visaDuration',$request->input('visaDuration'));
         Session::put('VisaStatus',$request->input('VisaStatus'));
-        Session::put('passportPicture',$request->input('passportPicture'));
-        Session::put('personalPicture',$request->input('personalPicture'));
+
+        if (!is_null($request->passportPicture)) {
+
+            $file_extension = $request->passportPicture->getClientOriginalExtension();
+            $file_name = $request->passportPicture->getClientOriginalName();
+            $request->passportPicture->move(Public_path('photos').'\guests', $file_name);
+            Session::put('passportPicture',$file_name);
+
+        }
+
+        if (!is_null($request->personalPicture)) {
+            $file_extension = $request->personalPicture->getClientOriginalExtension();
+            $file_name = $request->personalPicture->getClientOriginalName();
+            $request->personalPicture->move(Public_path('photos').'\guests', $file_name);
+            Session::put('personalPicture',$file_name);
+
+        }
+        
         Session::put('withCompanion',$request->input('withCompanion'));
         if($request->input('withCompanion') == "yes"){
             Session::put('firstNameCompanion',$request->input('firstNameCompanion'));
@@ -69,8 +85,22 @@ class MainController extends Controller
             Session::put('organizationCompanion',$request->input('organizationCompanion'));
             Session::put('visaDurationCompanion',$request->input('visaDurationCompanion'));
             Session::put('VisaStatusCompanion',$request->input('VisaStatusCompanion'));
-            Session::put('passportPictureCompanion',$request->input('passportPictureCompanion'));
-            Session::put('passportPictureCompanion',$request->input('personalPictureCompanion'));
+
+            if (!is_null($request->passportPictureCompanion)) {
+                $file_extension = $request->passportPictureCompanion->getClientOriginalExtension();
+                $file_name = $request->passportPictureCompanion->getClientOriginalName();
+                $request->passportPictureCompanion->move(Public_path('photos').'\companions', $file_name);
+                Session::put('passportPictureCompanion',$file_name);
+    
+            }
+            if (!is_null($request->personalPictureCompanion)) {
+                $file_extension = $request->personalPictureCompanion->getClientOriginalExtension();
+                $file_name = $request->personalPictureCompanion->getClientOriginalName();
+                $request->personalPictureCompanion->move(Public_path('photos').'\companions', $file_name);
+                Session::put('personalPictureCompanion',$file_name);
+    
+            }
+           
         }
         
         return view('third_page');

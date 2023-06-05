@@ -135,11 +135,13 @@
         <h5 class="pt-3"> upload require documents for VISA requirement :</h5>
         {{-- passportPicture  --}}
         <label for="passportPicture" class="form-label">passport Picture :</label>
-        <input value="{{ Session::get('passportPicture') }}" class="form-control form-control-sm" name="passportPicture" id="passportPicture" type="file">
+        <input value="{{ Session::get('passportPicture') }}" class="form-control form-control-sm" name="passportPicture" id="passportPicture" type="text">
+        <img width="125" height="125"  class="rounded-1 img-thumbnail m-auto d-block" src="{{asset('photos/guests/'.Session::get('passportPicture'))}}">
         
         {{-- personalPicture  --}}
         <label for="personalPicture" class="form-label">personal Picture :</label>
-        <input value="{{ Session::get('personalPicture') }}" class="form-control form-control-sm" name="personalPicture" id="personalPicture" type="file">
+        <input value="{{ Session::get('personalPicture') }}" class="form-control form-control-sm" name="personalPicture" id="personalPicture" type="text">
+        <img width="125" height="125"  class="rounded-1 img-thumbnail m-auto d-block" src="{{asset('photos/guests/'.Session::get('personalPicture'))}}">
         
         {{-- with companion ? --}}
         <label for="withCompanion" class="form-label">Are you Traveling with companion ?</label>
@@ -250,11 +252,15 @@
             <h5 class="pt-3"> upload require documents for VISA requirement :</h5>
             {{-- passportPictureCompanion  --}}
             <label for="passportPictureCompanion" class="form-label">passport Picture :</label>
-            <input class="form-control form-control-sm" name="passportPictureCompanion" id="passportPictureCompanion" type="file">
+            <input class="form-control form-control-sm" name="passportPictureCompanion" id="passportPictureCompanion" type="text">
+            <img width="125" height="125"  class="rounded-1 img-thumbnail m-auto d-block" src="{{asset('photos/companions/'.Session::get('passportPictureCompanion'))}}">
+
             
             {{-- personalPictureCompanion  --}}
             <label for="personalPictureCompanion" class="form-label">personal Picture :</label>
-            <input class="form-control form-control-sm" name="personalPictureCompanion" id="personalPictureCompanion" type="file">
+            <input class="form-control form-control-sm" name="personalPictureCompanion" id="personalPictureCompanion" type="text">
+            <img width="125" height="125"  class="rounded-1 img-thumbnail m-auto d-block" src="{{asset('photos/companions/'.Session::get('personalPictureCompanion'))}}">
+
         
         </div>
 
