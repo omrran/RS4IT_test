@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CompleteInfoMail;
+use App\Mail\ConfirmationMail;
 use Illuminate\Support\Facades\Session;
+use App\Models\Companion;
+use App\Models\Guest;
 
 
 class MainController extends Controller
@@ -21,7 +24,7 @@ class MainController extends Controller
         Session::put('email',$request->input('email'));
         Mail::to($request->input('email'))->send(new CompleteInfoMail());
 
-        return "check your email";
+        return "check your email ".$request->input('email');
     }
 
     public function secondPage(Request $request){
@@ -80,7 +83,66 @@ class MainController extends Controller
         // return  Session::all(); 
     }
     public function submitData (Request $request){
-        return $request->all();
+        // validation;
+
+        //save data;
+
+        $guest_id = Guest::create([
+            'email'             => $request->input('email'),
+            "countryCode"       => $request->input('countryCode'),
+            "mobileNo"          => $request->input('mobileNo'),
+            "firstName"         => $request->input('firstName'),
+            "lastName"          => $request->input('lastName'),
+            "birthDate"         => $request->input('birthDate'),
+            "gender"            => $request->input('gender'),
+            "placeOfBirth"      => $request->input('placeOfBirth'),
+            "countryOfResidency"=> $request->input('countryOfResidency'),
+            "passportNo"        => $request->input('passportNo'),
+            "issueDate"         => $request->input('issueDate'),
+            "expiryDate"        => $request->input('expiryDate'),
+            "placeOfIssue"      => $request->input('placeOfIssue'),
+            "arrivalDate"       => $request->input('arrivalDate'),
+            "profession"        => $request->input('profession'),
+            "organization"      => $request->input('organization'),
+            "visaDuration"      => $request->input('visaDuration'),
+            "VisaStatus"        => $request->input('VisaStatus'),
+            "passportPicture"   => $request->input('passportPicture'),
+            "personalPicture"   => $request->input('personalPicture'),
+            "withCompanion"     => $request->input('withCompanion'),
+            "CheckInDate5Nigh"  =>$request->input('CheckInDate5Nigh'),
+            "CheckOutDate5Nigh" =>$request->input('CheckOutDate5Nigh'),
+            "romType"           =>$request->input('romType')
+
+        ])->id;
+
+        if($request->input('withCompanion') == "yes"){
+            Companion::create([
+                "guest_id" => $guest_id ,
+                "firstName" => $request->input('firstNameCompanion'),
+                "lastName" => $request->input('lastNameCompanion'),
+                "birthDate" => $request->input('birthDateCompanion'),
+                "gender" => $request->input('genderCompanion'),
+                "placeOfBirth" => $request->input('placeOfBirthCompanion'),
+                "countryOfResidency" => $request->input('countryOfResidencyCompanion'),
+                "passportNo" => $request->input('passportNoCompanion'),
+                "issueDate" => $request->input('issueDateCompanion'),
+                "expiryDate" => $request->input('expiryDateCompanion'),
+                "placeOfIssue" => $request->input('placeOfIssueCompanion'),
+                "arrivalDate" => $request->input('arrivalDateCompanion'),
+                "profession" => $request->input('professionCompanion'),
+                "organization" => $request->input('organizationCompanion'),
+                "visaDuration" => $request->input('visaDurationCompanion'),
+                "VisaStatus" => $request->input('VisaStatusCompanion'),
+                "passportPicture" => $request->input('passportPictureCompanion'),
+                "personalPicture" => $request->input('personalPictureCompanion')
+        ]);
+        
+        }
+        
+        //send email;
+        Mail::to($request->input('email'))->send(new ConfirmationMail());        
+        //return final page;
+        return view('final_page');
     }
 
     

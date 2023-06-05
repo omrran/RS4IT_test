@@ -7,6 +7,11 @@
     {{Session::get('firstName')}}
      <form method="POST" action="{{ url('/submit-data') }}">
         @csrf
+
+        {{-- email --}}
+        <label class="pt-2">email :</label>
+        <input type="text" class="form-control" name="email"  value="{{Session::get('email')}}"/>
+        
         {{-- countryCode and mobileNo --}}
         <div class="d-flex">
             <div class="input-group mb-3 ">
