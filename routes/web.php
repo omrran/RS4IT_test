@@ -26,6 +26,8 @@ Route::post('send-mail',[MainController::class,'sendMail']);
 Route::post('second-page',[MainController::class,'secondPage']);
 Route::post('third-page',[MainController::class,'thirdPage']);
 Route::post('review-data',[MainController::class,'reviewData']);
+Route::post('submit-data',[MainController::class,'submitData']);
+
 
 
 

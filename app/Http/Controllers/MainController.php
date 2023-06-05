@@ -79,6 +79,9 @@ class MainController extends Controller
         return  view('review_page'); 
         // return  Session::all(); 
     }
+    public function submitData (Request $request){
+        return $request->all();
+    }
 
     
 }
